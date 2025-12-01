@@ -1,69 +1,47 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "branchPrefix": "chore-renovate-",
-  "constraintsFiltering": "strict",
-  "rangeStrategy": "pin",
-  "rebaseWhen": "auto",
-  "labels": ["type::renovate"],
-  "schedule": ["after 6am and before 8am every weekday"],
-  "minimumReleaseAge": "3 days",
-  "prConcurrentLimit": 10,
-  "vulnerabilityAlerts": {
-    "enabled": true,
-    "labels": [
-      "type::renovate",
-      "priority::high",
-      "security"
-    ],
-    "schedule": [
-      "at any time"
-    ],
-    "minimumReleaseAge": "0 days",
-    "automerge": false
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  branchPrefix: 'chore-renovate-',
+  constraintsFiltering: 'strict',
+  lockFileMaintenance: {
+    enabled: true,
   },
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true,
-    "automergeType": "branch",
-    "schedule": ["on monday"]
-  },
-  "extends": [
-    "config:best-practices",
-    "group:allDigest",
-    "group:allNonMajor",
-    ":semanticCommitTypeAll(chore)"
+  extends: [
+    'config:best-practices',
+    'group:allDigest',
+    'group:allNonMajor',
+    ':semanticCommitTypeAll(chore)',
   ],
-  "packageRules": [
+  packageRules: [
     {
-      "allowedVersions": "<=3.12",
+      "description": "Always create PRs for major updates",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "automerge": false
+    },
+    {
+      "description": "Always create PRs for all Django updates (patch/minor/major)",
+      "matchPackageNames": [
+        "django"
+      ],
+      "automerge": false
+    },
+    {
+      "description": "Use update-lockfile strategy for pep621 manager with uv",
+      "matchManagers": [
+        "pep621"
+      ],
+      "rangeStrategy": "pin"
+    },
+    {
+      "description": "Python version management",
       "matchDepNames": [
         "python"
-      ]
-    },
-    // ####################################
-    // # PYTHON DEPENDENCIES
-    // ####################################
-    {
-      "automerge": true,
-      "automergeType": "branch",
-      "groupName": "python dependencies (non-major)",
-      "matchManagers": [
-        "uv"
       ],
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "pin",
-        "digest"
-      ]
+      "matchManagers": [
+        "pep621"
+      ],
+      "rangeStrategy": "replace"
     },
-    {
-      "allowedVersions": "<6",
-      "groupName": "django",
-      "matchDepNames": [
-        "django",
-        "Django"
-      ]
-    },
-  ]
+  ],
 }
