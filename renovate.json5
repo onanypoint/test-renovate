@@ -1,69 +1,23 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "branchPrefix": "chore-renovate-",
-  "constraintsFiltering": "strict",
-  "rangeStrategy": "pin",
-  "rebaseWhen": "auto",
-  "labels": ["type::renovate"],
-  "schedule": ["after 6am and before 8am every weekday"],
-  "minimumReleaseAge": "3 days",
-  "prConcurrentLimit": 10,
-  "vulnerabilityAlerts": {
-    "enabled": true,
-    "labels": [
-      "type::renovate",
-      "priority::high",
-      "security"
-    ],
-    "schedule": [
-      "at any time"
-    ],
-    "minimumReleaseAge": "0 days",
-    "automerge": false
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  branchPrefix: 'chore-renovate-',
+  constraintsFiltering: 'strict',
+  lockFileMaintenance: {
+    enabled: true,
   },
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true,
-    "automergeType": "branch",
-    "schedule": ["on monday"]
-  },
-  "extends": [
-    "config:best-practices",
-    "group:allDigest",
-    "group:allNonMajor",
-    ":semanticCommitTypeAll(chore)"
+  extends: [
+    'config:best-practices',
+    'group:allDigest',
+    'group:allNonMajor',
+    ':semanticCommitTypeAll(chore)',
   ],
-  "packageRules": [
+  packageRules: [
     {
-      "allowedVersions": "<=3.12",
-      "matchDepNames": [
-        "python"
-      ]
-    },
-    // ####################################
-    // # PYTHON DEPENDENCIES
-    // ####################################
-    {
-      "automerge": true,
-      "automergeType": "branch",
-      "groupName": "python dependencies (non-major)",
+      "groupName": "Python dependencies",
       "matchManagers": [
-        "uv"
+        "pep651"
       ],
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "pin",
-        "digest"
-      ]
+      "separateMultipleMajor": true,
     },
-    {
-      "allowedVersions": "<6",
-      "groupName": "django",
-      "matchDepNames": [
-        "django",
-        "Django"
-      ]
-    },
-  ]
+  ],
 }
