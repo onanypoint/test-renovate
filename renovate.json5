@@ -2,29 +2,27 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "branchPrefix": "chore-renovate-",
   "constraintsFiltering": "strict",
-  "rangeStrategy": "pin",
+  "rangeStrategy": "update-lockfile",
   "rebaseWhen": "auto",
   "labels": ["type::renovate"],
   "schedule": ["after 6am and before 8am every weekday"],
   "minimumReleaseAge": "3 days",
   "prConcurrentLimit": 10,
+  "dependencyDashboard": true,
   "vulnerabilityAlerts": {
     "enabled": true,
     "labels": [
       "type::renovate",
       "priority::high",
-      "security"
     ],
     "schedule": [
       "at any time"
     ],
-    "minimumReleaseAge": "0 days",
+    "minimumReleaseAge": "1 days",
     "automerge": false
   },
   "lockFileMaintenance": {
     "enabled": true,
-    "automerge": true,
-    "automergeType": "branch",
     "schedule": ["on monday"]
   },
   "extends": [
@@ -44,26 +42,45 @@
     // # PYTHON DEPENDENCIES
     // ####################################
     {
-      "automerge": true,
-      "automergeType": "branch",
       "groupName": "python dependencies (non-major)",
+      "description": "Group and automerge minor and patch updates for all dependencies except Django",
       "matchManagers": [
-        "uv"
+        "pep621"
       ],
       "matchUpdateTypes": [
         "minor",
         "patch",
         "pin",
         "digest"
-      ]
+      ],
+      "excludePackageNames": [
+        "Django",
+        "django"
+      ],
     },
     {
-      "allowedVersions": "<6",
+      "description": "Open separate MR for each major update (except Django)",
+      "matchManagers": [
+        "pep621"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "excludePackageNames": [
+        "django",
+        "Django"
+      ],
+      "groupName": null
+    },
+    {
       "groupName": "django",
+      "matchManagers": [
+        "pep621"
+      ],
       "matchDepNames": [
         "django",
         "Django"
       ]
-    },
+    }
   ]
 }
