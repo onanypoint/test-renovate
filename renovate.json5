@@ -1,69 +1,64 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "branchPrefix": "chore-renovate-",
-  "constraintsFiltering": "strict",
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  branchPrefix: 'chore-renovate-',
+  constraintsFiltering: 'strict',
   "rangeStrategy": "pin",
-  "rebaseWhen": "auto",
-  "labels": ["type::renovate"],
-  "schedule": ["after 6am and before 8am every weekday"],
-  "minimumReleaseAge": "3 days",
-  "prConcurrentLimit": 10,
-  "vulnerabilityAlerts": {
-    "enabled": true,
-    "labels": [
-      "type::renovate",
-      "priority::high",
-      "security"
-    ],
-    "schedule": [
-      "at any time"
-    ],
-    "minimumReleaseAge": "0 days",
-    "automerge": false
+  lockFileMaintenance: {
+    enabled: true,
   },
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true,
-    "automergeType": "branch",
-    "schedule": ["on monday"]
-  },
-  "extends": [
-    "config:best-practices",
-    "group:allDigest",
-    "group:allNonMajor",
-    ":semanticCommitTypeAll(chore)"
+  extends: [
+    'config:best-practices',
+    'group:allDigest',
+    'group:allNonMajor',
+    ':semanticCommitTypeAll(chore)',
   ],
-  "packageRules": [
+  packageRules: [
     {
-      "allowedVersions": "<=3.12",
-      "matchDepNames": [
-        "python"
-      ]
-    },
-    // ####################################
-    // # PYTHON DEPENDENCIES
-    // ####################################
-    {
-      "automerge": true,
-      "automergeType": "branch",
-      "groupName": "python dependencies (non-major)",
-      "matchManagers": [
-        "uv"
+      allowedVersions: '<=3.12',
+      matchDepNames: [
+        'python',
       ],
-      "matchUpdateTypes": [
-        "minor",
-        "patch",
-        "pin",
-        "digest"
-      ]
     },
     {
-      "allowedVersions": "<6",
-      "groupName": "django",
-      "matchDepNames": [
-        "django",
-        "Django"
-      ]
+      groupName: 'python dependencies (non-major)',
+      description: 'Group and automerge minor and patch updates for all dependencies except Django',
+      matchManagers: [
+        'pep621',
+      ],
+      matchUpdateTypes: [
+        'minor',
+        'patch',
+        'pin',
+        'digest',
+      ],
+      matchPackageNames: [
+        '!Django',
+        '!django',
+      ],
     },
-  ]
+    {
+      description: 'Open separate MR for each major update (except Django)',
+      matchManagers: [
+        'pep621',
+      ],
+      matchUpdateTypes: [
+        'major',
+      ],
+      groupName: null,
+      matchPackageNames: [
+        '!django',
+        '!Django',
+      ],
+    },
+    {
+      groupName: 'django',
+      matchManagers: [
+        'pep621',
+      ],
+      matchPackageNames: [
+        'django',
+        'Django',
+      ],
+    },
+  ],
 }
