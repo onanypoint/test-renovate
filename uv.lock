@@ -170,9 +170,9 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "django", specifier = ">=4.2,<5.0" },
-    { name = "django-cors-headers", specifier = "==4.2.0" },
-    { name = "django-csp", specifier = "==3.8" },
+    { name = "django", specifier = "==4.2.24" },
+    { name = "django-cors-headers", specifier = ">=4.2.0" },
+    { name = "django-csp", specifier = ">=3.7" },
     { name = "pandas", specifier = ">=2.2.1" },
 ]
 
