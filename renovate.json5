@@ -1,17 +1,16 @@
 {
-  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-  branchPrefix: 'chore-renovate-',
-  constraintsFiltering: 'strict',
-  lockFileMaintenance: {
-    enabled: true,
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "branchPrefix": "chore-renovate-",
+  "constraintsFiltering": "none",
+  "lockFileMaintenance": {
+    "enabled": true
   },
-  extends: [
-    'config:best-practices',
-    'group:allDigest',
-    'group:allNonMajor',
-    ':semanticCommitTypeAll(chore)',
+  "extends": [
+    "config:best-practices",
+    "group:allDigest",
+    ":semanticCommitTypeAll(chore)"
   ],
-  packageRules: [
+  "packageRules": [
     {
       "description": "Always create PRs for major updates",
       "matchUpdateTypes": [
@@ -27,21 +26,41 @@
       "automerge": false
     },
     {
-      "description": "Use update-lockfile strategy for pep621 manager with uv",
-      "matchManagers": [
-        "pep621"
+      "description": "Limit Django to 5.2.x - block version 6.0 and above",
+      "matchPackageNames": [
+        "django"
       ],
-      "rangeStrategy": "pin"
+      "allowedVersions": "<6.0"
     },
     {
-      "description": "Python version management",
+      "description": "Create separate PR for Python version updates",
       "matchDepNames": [
         "python"
       ],
       "matchManagers": [
         "pep621"
       ],
-      "rangeStrategy": "replace"
+      "groupName": null,
+      "rangeStrategy": "replace",
+      "automerge": false
     },
-  ],
+    {
+      "description": "Group all non-major dependency updates except Python",
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "excludePackageNames": [
+        "python"
+      ],
+      "groupName": "all non-major dependencies"
+    },
+    {
+      "description": "Use pin strategy for pep621 manager",
+      "matchManagers": [
+        "pep621"
+      ],
+      "rangeStrategy": "pin"
+    }
+  ]
 }
