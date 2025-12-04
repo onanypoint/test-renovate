@@ -60,10 +60,10 @@
       matchManagers: [
         'pep621',
       ],
-      "excludeDepNames": [
-        "python"
-      ],
       rangeStrategy: 'pin',
+      matchDepNames: [
+        '!python',
+      ],
     },
   ],
 }
