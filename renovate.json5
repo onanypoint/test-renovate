@@ -1,15 +1,15 @@
 {
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   branchPrefix: 'chore-renovate-',
-  constraintsFiltering: 'none',
-  lockFileMaintenance: {
-    enabled: true,
-  },
+  dependencyDashboard: true,
   extends: [
     'config:best-practices',
     'group:allDigest',
     ':semanticCommitTypeAll(chore)',
   ],
+  "lockFileMaintenance": {
+    "enabled": true,
+  },
   packageRules: [
     {
       description: 'Always create PRs for major updates',
@@ -18,52 +18,93 @@
       ],
       automerge: false,
     },
+    // ####################################
+    // EXTERNAL DEPENDENCIES
+    // ####################################
     {
-      description: 'Always create PRs for all Django updates (patch/minor/major)',
-      matchPackageNames: [
-        'django',
+      description: 'External: group pin + patch updates',
+      matchCategories: [
+        'docker',
+        'ci',
       ],
-      automerge: false,
+      matchUpdateTypes: ['pin', 'digest', 'patch', 'minor'],
+      groupName: 'external dependencies',
+      groupSlug: 'external-deps',
+    },
+    // EXTERNAL DEPENDENCIES MAX VERSION
+    {
+      description: 'Postgres: block v19+',
+      matchDepNames: ['postgres'],
+      allowedVersions: '<19',
     },
     {
-      description: 'Limit Django to 5.2.x - block version 6.0 and above',
-      matchPackageNames: [
-        'django',
-      ],
-      allowedVersions: '<6.0',
+      description: 'Elasticsearch: block v10+',
+      matchDepNames: ['elasticsearch'],
+      allowedVersions: '<10',
     },
     {
-      description: 'Create separate PR for Python version updates',
-      matchDepNames: [
-        'python',
-      ],
-      matchManagers: [
-        'pep621',
-      ],
-      groupName: null,
-      rangeStrategy: 'replace',
-      automerge: false,
+      description: 'Redis: block v9+',
+      matchDepNames: ['redis'],
+      allowedVersions: '<9',
     },
+    // ####################################
+    // PYTHON DEPENDENCIES
+    // ####################################
     {
-      description: 'Group all non-major dependency updates except Python',
-      matchUpdateTypes: [
-        'minor',
-        'patch',
-      ],
-      groupName: 'all non-major dependencies',
-      matchPackageNames: [
-        '!python',
-      ],
-    },
-    {
-      description: 'Use pin strategy for pep621 manager',
-      matchManagers: [
-        'pep621',
-      ],
-      "excludeDepNames": [
-        "python"
-      ],
+      description: 'pep621: pin dependency versions in pyproject.toml',
+      matchCategories: ['python'],
+      matchDepNames: ['!python'],
       rangeStrategy: 'pin',
+      groupName: 'python dependencies',
+      groupSlug: 'python-deps',
+    },
+    {
+      description: 'Disable python updates',
+      matchDepNames: ['python'],
+      enabled: false,
+    },
+    {
+      description: 'Group Django updates',
+      allowedVersions: '<6',
+      groupName: 'django',
+      groupSlug: 'python-django',
+      matchDepNames: [
+        'django',
+        'Django',
+      ],
+    },
+    // ####################################
+    // NPM DEPENDENCIES
+    // ####################################
+    {
+      description: 'JS package manager: update pnpm/yarn/npm independently',
+      groupName: 'js package manager',
+      groupSlug: 'js-package-manager',
+      matchManagers: ['npm'],
+      matchDepTypes: ['packageManager'],
+      rangeStrategy: 'replace',
+    },
+    {
+      description: 'Node runtime: keep version updates separate',
+      groupName: 'node',
+      groupSlug: 'js-node',
+      matchCategories: ['js'],
+      matchPackageNames: ['node'],
+      rangeStrategy: 'replace',
+    },
+    {
+      description: 'JS: group minor updates',
+      groupName: 'js dependencies (minor)',
+      groupSlug: 'js-minor',
+      matchCategories: ['js'],
+      matchUpdateTypes: ['minor'],
+    },
+    {
+      description: 'JS: group patch/pin/digest updates',
+      groupName: 'js dependencies (patch/pin/digest)',
+      groupSlug: 'js-patch-pin-digest',
+      matchCategories: ['js'],
+      matchUpdateTypes: ['patch', 'pin', 'digest'],
     },
   ],
 }

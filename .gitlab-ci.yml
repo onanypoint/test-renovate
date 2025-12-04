@@ -1,0 +1,12 @@
+default:
+    image: ghcr.io/astral-sh/uv:python3.11-trixie
+    services:
+      -   name: postgres:15.13
+          alias: db_ci
+      -   name: redis:7
+          alias: redis_ci
+
+variables:
+    POSTGRES_DB: ci
+    POSTGRES_USER: ci
+    POSTGRES_PASSWORD: ci
