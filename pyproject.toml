@@ -10,3 +10,8 @@ dependencies = [
     "django==4.2.25",
     "pandas==2.2.2",
 ]
+
+[dependency-groups]
+dev = [
+    "pandas==2.2.2",
+]
