@@ -22,6 +22,7 @@
       description: 'Always create PRs for all Django updates (patch/minor/major)',
       matchPackageNames: [
         'django',
+        'Django'
       ],
       automerge: false,
     },
@@ -29,6 +30,7 @@
       description: 'Limit Django to 5.2.x - block version 6.0 and above',
       matchPackageNames: [
         'django',
+        'Django'
       ],
       allowedVersions: '<6.0',
     },
