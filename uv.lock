@@ -190,14 +190,14 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "django", specifier = ">=4.2.25" },
-    { name = "django-cors-headers", specifier = ">=4.2.0" },
-    { name = "django-csp", specifier = ">=3.8" },
-    { name = "pandas", specifier = ">=2.2.2" },
+    { name = "django", specifier = "==4.2.25" },
+    { name = "django-cors-headers", specifier = "==4.2.0" },
+    { name = "django-csp", specifier = "==3.8" },
+    { name = "pandas", specifier = "==2.2.2" },
 ]
 
 [package.metadata.requires-dev]
-dev = [{ name = "pandas", specifier = ">=2.2.2" }]
+dev = [{ name = "pandas", specifier = "==2.2.2" }]
 
 [[package]]
 name = "tzdata"
