@@ -11,7 +11,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.21.0",
   "dependencies": {
-    "@sentry/vue": "10.28.0",
+    "@sentry/vue": "10.31.0",
     "vue": "3.4.25"
   },
   "devDependencies": {
