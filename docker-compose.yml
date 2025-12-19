@@ -1,0 +1,7 @@
+services:
+    db:
+        container_name: test-postgres
+        image: postgres:17
+    redis:
+        container_name: test-redis
+        image: redis:6.2.20

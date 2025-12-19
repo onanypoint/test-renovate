@@ -1,15 +1,16 @@
 {
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   branchPrefix: 'chore-renovate-',
-  constraintsFiltering: 'none',
-  lockFileMaintenance: {
-    enabled: true,
-  },
+  dependencyDashboard: true,
   extends: [
     'config:best-practices',
     'group:allDigest',
+    'group:allNonMajor',
     ':semanticCommitTypeAll(chore)',
   ],
+  "lockFileMaintenance": {
+    "enabled": true,
+  },
   packageRules: [
     {
       description: 'Always create PRs for major updates',
@@ -18,51 +19,69 @@
       ],
       automerge: false,
     },
+    // ####################################
+    // External dependencies
+    // ####################################
     {
-      description: 'Always create PRs for all Django updates (patch/minor/major)',
-      matchPackageNames: [
-        'django',
-      ],
-      automerge: false,
-    },
-    {
-      description: 'Limit Django to 5.2.x - block version 6.0 and above',
-      matchPackageNames: [
-        'django',
-      ],
-      allowedVersions: '<6.0',
-    },
-    {
-      description: 'Create separate PR for Python version updates',
-      matchDepNames: [
-        'python',
-      ],
+      description: 'External: group digest updates',
       matchManagers: [
-        'pep621',
+        'docker-compose',
+        'dockerfile',
+        'gitlabci',
       ],
-      groupName: null,
-      rangeStrategy: 'replace',
-      automerge: false,
+      matchUpdateTypes: ['digest'],
+      groupName: 'external dependencies (digest)',
     },
     {
-      description: 'Group all non-major dependency updates except Python',
-      matchUpdateTypes: [
-        'minor',
-        'patch',
-      ],
-      groupName: 'all non-major dependencies',
-      matchPackageNames: [
-        '!python',
-      ],
-    },
-    {
-      description: 'Use pin strategy for pep621 manager',
+      description: 'External: group pin + patch updates',
       matchManagers: [
-        'pep621',
+        'docker-compose',
+        'dockerfile',
+        'gitlabci',
       ],
+      matchUpdateTypes: ['pin', 'patch', 'minor'],
+      groupName: 'external dependencies (pin/patch)',
+    },
+    // EXTERNAL DEPENDENCIES MAX VERSION
+    {
+      description: 'Postgres: block v19+',
+      matchDepNames: ['postgres'],
+      allowedVersions: '<19',
+    },
+    {
+      description: 'Elasticsearch: block v10+',
+      matchDepNames: ['elasticsearch'],
+      allowedVersions: '<10',
+    },
+    {
+      description: 'Redis: block v9+',
+      matchDepNames: ['redis'],
+      allowedVersions: '<9',
+    },
+    // ####################################
+    // PYTHON DEPENDENCIES
+    // ####################################
+    // {
+    //   description: 'pep621: manage requires-python updates separately',
+    //   matchManagers: ['pep621'],
+    //   matchDepNames: ['python'],
+    //   groupName: 'python',
+    //   rangeStrategy: 'replace',
+    //   automerge: false,
+    // },
+    {
+      description: 'pep621: pin dependency versions in pyproject.toml',
+      matchManagers: ['pep621'],
+      matchDepNames: ['!python'],
       rangeStrategy: 'pin',
+    },
+    {
+      description: 'Group Django updates',
+      allowedVersions: '<6',
+      groupName: 'django',
       matchDepNames: [
-        '!python',
+        'django',
+        'Django',
       ],
     },
   ],
