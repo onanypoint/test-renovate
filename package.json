@@ -9,10 +9,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.21.0",
+  "packageManager": "pnpm@10.26.0",
   "dependencies": {
-    "@sentry/vue": "10.28.0",
-    "vue": "3.4.25"
+    "@sentry/vue": "10.31.0",
+    "vue": "3.5.25"
   },
   "devDependencies": {
     "autoprefixer": "10.4.20",
