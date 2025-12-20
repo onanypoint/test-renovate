@@ -51,23 +51,38 @@
     // PYTHON DEPENDENCIES
     // ####################################
     {
-      description: 'pep621: pin dependency versions in pyproject.toml',
-      matchCategories: ['python'],
-      matchDepNames: ['!python'],
-      rangeStrategy: 'pin',
-      groupName: 'python dependencies',
-      groupSlug: 'python-deps',
-    },
-    {
       description: 'Disable python updates',
       matchDepNames: ['python'],
       enabled: false,
     },
     {
+      description: 'pep621: pin dependency versions in pyproject.toml',
+      matchManagers: ['pep621'],
+      matchDepNames: ['!python'],
+      rangeStrategy: 'pin',
+    },
+    {
+      description: 'pep621: group python dependency minor updates',
+      matchManagers: ['pep621'],
+      matchDepNames: ['!python'],
+      matchUpdateTypes: ['minor'],
+      groupName: 'python dependencies (minor)',
+      groupSlug: 'uv-deps-minor',
+    },
+    {
+      description: 'pep621: group python dependency patch/pin/digest updates',
+      matchManagers: ['pep621'],
+      matchDepNames: ['!python'],
+      matchUpdateTypes: ['patch', 'pin', 'digest'],
+      groupName: 'python dependencies (patch/pin/digest)',
+      groupSlug: 'uv-deps-patch-pin-digest',
+    },
+    {
       description: 'Group Django updates',
       allowedVersions: '<6',
+      matchManagers: ['pep621'],
       groupName: 'django',
-      groupSlug: 'python-django',
+      groupSlug: 'uv-django',
       matchDepNames: [
         'django',
         'Django',
