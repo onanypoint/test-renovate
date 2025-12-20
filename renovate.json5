@@ -9,14 +9,30 @@
   ],
   "lockFileMaintenance": {
     "enabled": true,
+    "schedule": ["on monday"]
   },
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": [
+      "type::renovate",
+      "priority::high",
+      "security"
+    ],
+    "schedule": [
+      "at any time"
+    ],
+    "minimumReleaseAge": "0 days",
+    "automerge": false
+  },
+  "labels": ["type::renovate"],
+  "schedule": ["after 4am and before 7am every weekday"],
+  "minimumReleaseAge": "3 days",
   packageRules: [
     {
       description: 'Always create PRs for major updates',
       matchUpdateTypes: [
         'major',
       ],
-      automerge: false,
     },
     // ####################################
     // EXTERNAL DEPENDENCIES
@@ -29,7 +45,8 @@
       ],
       matchUpdateTypes: ['pin', 'digest', 'patch', 'minor'],
       groupName: 'external dependencies',
-      groupSlug: 'external-deps',
+      groupSlug: 'external',
+      "schedule": [ "on the first day of the month"],
     },
     // EXTERNAL DEPENDENCIES MAX VERSION
     {
@@ -51,23 +68,38 @@
     // PYTHON DEPENDENCIES
     // ####################################
     {
-      description: 'pep621: pin dependency versions in pyproject.toml',
-      matchCategories: ['python'],
-      matchDepNames: ['!python'],
-      rangeStrategy: 'pin',
-      groupName: 'python dependencies',
-      groupSlug: 'python-deps',
-    },
-    {
       description: 'Disable python updates',
       matchDepNames: ['python'],
       enabled: false,
     },
     {
+      description: 'pep621: pin dependency versions in pyproject.toml',
+      matchManagers: ['pep621'],
+      matchDepNames: ['!python'],
+      rangeStrategy: 'pin',
+    },
+    {
+      description: 'pep621: group python dependency minor updates',
+      matchManagers: ['pep621'],
+      matchDepNames: ['!python'],
+      matchUpdateTypes: ['minor'],
+      groupName: 'python dependencies (minor)',
+      groupSlug: 'uv-minor',
+    },
+    {
+      description: 'pep621: group python dependency patch/pin/digest updates',
+      matchManagers: ['pep621'],
+      matchDepNames: ['!python'],
+      matchUpdateTypes: ['patch', 'pin', 'digest'],
+      groupName: 'python dependencies (patch/pin/digest)',
+      groupSlug: 'uv-patch-pin-digest',
+    },
+    {
       description: 'Group Django updates',
       allowedVersions: '<6',
+      matchManagers: ['pep621'],
       groupName: 'django',
-      groupSlug: 'python-django',
+      groupSlug: 'uv-django',
       matchDepNames: [
         'django',
         'Django',
