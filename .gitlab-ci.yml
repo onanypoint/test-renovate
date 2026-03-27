@@ -3,7 +3,7 @@ default:
     services:
       -   name: postgres:15.13@sha256:15d29ec7af31e0f60c2394ed5e3b4d45b6b8d78ffc6faf994e9796c1415b8785
           alias: db_ci
-      -   name: redis:7@sha256:d665ad9dd15a25c100b77134516d4f9f46f06884983d86456f0a9c0434f3b49f
+      -   name: redis:8@sha256:009cc37796fbdbe1b631b4cc0582bed167e5e403ed8bcd06f77eb6cb5aeb6f93
           alias: redis_ci
 
 variables:
