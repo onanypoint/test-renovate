@@ -1,9 +1,9 @@
 default:
-    image: ghcr.io/astral-sh/uv:python3.11-trixie@sha256:70cb1aa383d1549e6ec2e2348de9ddcfd6dfb3152bb5f6141d711006a1360e4b
+    image: ghcr.io/astral-sh/uv:python3.11-trixie@sha256:d56de8b3510f4a729df47df9461728e6722d8d4b86632614113194cde3fffaf4
     services:
-      -   name: postgres:15.13@sha256:15d29ec7af31e0f60c2394ed5e3b4d45b6b8d78ffc6faf994e9796c1415b8785
+      -   name: postgres:15.17@sha256:c635fa3e3b7421a659d34abdfd6d492f679cbe8149e261a501237b55c5a94212
           alias: db_ci
-      -   name: redis:7@sha256:d665ad9dd15a25c100b77134516d4f9f46f06884983d86456f0a9c0434f3b49f
+      -   name: redis:7@sha256:a5995dfdf108997f8a7c9587f54fad5e94ed5848de5236a6b28119e99efd67e0
           alias: redis_ci
 
 variables:

@@ -1,7 +1,7 @@
 services:
     db:
         container_name: test-postgres
-        image: postgres:17@sha256:dca7512acaa113409df7e40d977d801e53c0c8088e45d4311a45b4065ccfdcd3
+        image: postgres:17@sha256:b994732fcf33f73776c65d3a5bf1f80c00120ba5007e8ab90307b1a743c1fc16
     redis:
         container_name: test-redis
-        image: redis:6.2.20@sha256:2a5e873bfae4bcc660b27f45c391d4a7a01799b65dea7286acc858e9c6c1e7d3
+        image: redis:6.2.21@sha256:83a75a9107fae42b4407232299be484b2367c402376511d178672feb9cc8eb24
