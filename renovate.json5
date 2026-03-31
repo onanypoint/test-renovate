@@ -1,28 +1,40 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "dependencyDashboard": true,
+  "automerge": false,
+  "extends": [
+    "config:best-practices",
+    "group:allDigest",
+  ],
   "packageRules": [
     {
-      "automerge": true,
-      "automergeType": "branch",
-      "description": "External: group pin + patch updates",
-      "groupName": "external dependencies",
-      "groupSlug": "external",
-      "matchCategories": [
-        "docker",
-        "ci"
+      "description": "pep621: group python dependency updates",
+      "groupName": "python dependencies",
+      "groupSlug": "uv",
+      "matchDepNames": [
+        "!python"
+      ],
+      "matchManagers": [
+        "pep621"
       ],
       "matchUpdateTypes": [
+        "patch",
         "pin",
-        "digest",
-        "patch"
-      ],
-      "schedule": [
-        "on the first day of the month"
+        "digest"
       ]
     },
-    {
-      "groupSlug": "external",
-      "automerge": false
-    }
+     {
+      "automerge": true,
+      "automergeType": "branch",
+      "description": "Automerge Python patch/pin/digest updates",
+      "matchManagers": [
+        "pep621"
+      ],
+      "matchUpdateTypes": [
+        "patch",
+        "pin",
+        "digest"
+      ]
+    },
   ]
 }
