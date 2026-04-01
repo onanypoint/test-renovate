@@ -36,5 +36,16 @@
         "digest"
       ]
     },
+    {
+      "allowedVersions": "<16",
+      "description": "Postgres: block version",
+      "matchDepNames": [
+        "postgres"
+      ]
+    },
+    {
+      "matchDepNames": ["postgres"],
+      "enabled": false
+    }
   ]
 }
