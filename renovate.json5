@@ -194,6 +194,11 @@
       "matchManagers": [
         "pep621"
       ]
+    },
+    {
+      "matchUpdateTypes": ["digest", "pin"],
+      "minimumReleaseAgeBehaviour": "timestamp-optional",
+      "minimumReleaseAge": null,
     }
   ]
 }
