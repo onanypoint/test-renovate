@@ -48,7 +48,8 @@
       ],
       "matchUpdateTypes": [
         "pin",
-        "digest",
+        "digest"
+        "pinDigest",
         "patch"
       ],
       "schedule": [
@@ -128,6 +129,7 @@
       "matchUpdateTypes": [
         "patch",
         "pin",
+        "pinDigest",
         "digest"
       ],
       "schedule": [
@@ -178,6 +180,7 @@
       "matchUpdateTypes": [
         "patch",
         "pin",
+        "pinDigest",
         "digest"
       ]
     },
@@ -195,8 +198,12 @@
       ]
     },
     {
-      "matchUpdateTypes": ["pinDigest", "digest", "pin"],
+      "matchRegistryUrls": ["https://ghcr.io/**"],
       "minimumReleaseAge": null,
     }
+    // {
+    //   "matchUpdateTypes": ["pinDigest", "digest", "pin"],
+    //   "minimumReleaseAge": null,
+    // }
   ]
 }
