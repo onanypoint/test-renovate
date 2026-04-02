@@ -42,6 +42,7 @@
       "description": "External: group pin + patch updates",
       "groupName": "external dependencies",
       "groupSlug": "external",
+      "minimumReleaseAgeBehaviour": "timestamp-optional",
       "matchCategories": [
         "docker",
         "ci"
@@ -193,10 +194,6 @@
       "matchManagers": [
         "pep621"
       ]
-    },
-    {
-      "matchRegistryUrls": ["https://ghcr.io"],
-      "minimumReleaseAge": null
     }
   ]
 }
