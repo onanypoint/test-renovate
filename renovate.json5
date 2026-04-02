@@ -195,8 +195,12 @@
       ]
     },
     {
-      "matchUpdateTypes": ["pinDigest", "digest", "pin"],
+      "matchRegistryUrls": ["https://ghcr.io/**"],
       "minimumReleaseAge": null,
     }
+    // {
+    //   "matchUpdateTypes": ["pinDigest", "digest", "pin"],
+    //   "minimumReleaseAge": null,
+    // }
   ]
 }
