@@ -17,6 +17,7 @@
       "on monday"
     ]
   },
+  "prCreation": "not-pending",
   // "minimumReleaseAgeBehaviour":"timestamp-optional",
   "minimumReleaseAge": "7 days",
   "prConcurrentLimit": 10,
@@ -42,7 +43,6 @@
       "description": "External: group pin + patch updates",
       "groupName": "external dependencies",
       "groupSlug": "external",
-      "minimumReleaseAgeBehaviour": "timestamp-optional",
       "matchCategories": [
         "docker",
         "ci"
