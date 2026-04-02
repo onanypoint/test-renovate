@@ -193,9 +193,9 @@
         "pep621"
       ]
     },
-    // {
-    //   "matchUpdateTypes": ["pin", "pinDigest"],
-    //   "minimumReleaseAge": null,
-    // }
+    {
+      "matchUpdateTypes": ["pin", "pinDigest"],
+      "minimumReleaseAge": null,
+    }
   ]
 }
