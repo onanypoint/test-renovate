@@ -17,7 +17,6 @@
       "on monday"
     ]
   },
-  // "minimumReleaseAgeBehaviour":"timestamp-optional",
   "minimumReleaseAge": "7 days",
   "prConcurrentLimit": 10,
   "rebaseWhen": "auto",
@@ -30,7 +29,6 @@
     "labels": [
       "type::renovate",
       "priority::high",
-      "security"
     ],
     "minimumReleaseAge": null,
     "schedule": [
@@ -54,33 +52,6 @@
       ],
       "schedule": [
         "on the first day of the month"
-      ]
-    },
-    {
-      "allowedVersions": "<8",
-      "description": "Elasticsearch: block version",
-      "matchDepNames": [
-        "elasticsearch"
-      ]
-    },
-    {
-      "allowedVersions": "<16",
-      "description": "Postgres: block version",
-      "matchDepNames": [
-        "postgres"
-      ]
-    },
-    {
-      "allowedVersions": "<3.11",
-      "matchDepNames": [
-        "rabbitmq-server"
-      ]
-    },
-    {
-      "allowedVersions": "<9",
-      "description": "Redis: block version",
-      "matchDepNames": [
-        "redis"
       ]
     },
     {
@@ -183,7 +154,6 @@
       ]
     },
     {
-
       "allowedVersions": "<6",
       "description": "Group Django updates",
       "groupName": "django",
