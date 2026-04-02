@@ -17,7 +17,6 @@
       "on monday"
     ]
   },
-  "prCreation": "not-pending",
   // "minimumReleaseAgeBehaviour":"timestamp-optional",
   "minimumReleaseAge": "7 days",
   "prConcurrentLimit": 10,
