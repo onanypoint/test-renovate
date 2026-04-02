@@ -1,0 +1,83 @@
+image:  ghcr.io/astral-sh/uv:python3.12-trixie
+
+services:
+  - name: postgres:15@sha256:24d6c206bba8c0440bceb24a8d4bf642f60bf7aea94887051ea5761d29c22323
+    alias: db_ci
+
+stages:
+  - checks
+  - tests
+  - sonarqube
+
+cache:
+  key: ${CI_PROJECT_NAME}
+  paths:
+    - $UV_CACHE_DIR
+
+variables:
+  POSTGRES_DB: "ci"
+  POSTGRES_USER: "ci"
+  POSTGRES_PASSWORD: "ci"
+  UV_LINK_MODE: copy
+  UV_CACHE_DIR: $CI_PROJECT_DIR/.cache/uv
+
+before_script:
+  - uv sync
+  - cd justsearch
+  - cp app/settingsLocal.ci app/settingsLocal.py
+
+checks:ruff:
+  stage: checks
+  script:
+    - uv run ruff format . --check
+    - uv run ruff check . --output-format gitlab --output-file=ruff_report.json
+  artifacts:
+      name: ${CI_PROJECT_NAME}_code_quality
+      when: always
+      reports:
+          codequality: justsearch/ruff_report.json
+      expire_in: 1 week
+
+checks:django:
+  stage: checks
+  allow_failure: true
+  script:
+    - uv run python manage.py check --verbosity 3
+    - uv run python manage.py makemigrations --check --dry-run --verbosity 3
+
+tests:coverage:
+  stage: tests
+  script:
+    - uv run coverage run --rcfile=../pyproject.toml manage.py test --no-input
+    - uv run coverage report
+    - uv run coverage xml
+  coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/' # Extract total coverage percentage from the report command
+  artifacts:
+    when: always
+    paths:
+      - coverage.xml
+      - test_report.xml
+    reports:
+      junit: test_report.xml  # Upload test execution report so it shows all tests on the pipeline test page
+      coverage_report:  # Upload coverage report in cobertura format (default) so it shows the percentage on the job
+        coverage_format: cobertura
+        path: coverage.xml
+
+sonarqube:
+  stage: sonarqube
+  image:
+    name: sonarsource/sonar-scanner-cli:latest@sha256:46341f2c2dc560381414e90347885f5cddc716db080adcbafc1cac13e1473094
+    entrypoint: [""]
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner
+  allow_failure: true
+  before_script: []
+  only:
+    - master
