@@ -42,6 +42,7 @@
       "description": "External: group pin + patch updates",
       "groupName": "external dependencies",
       "groupSlug": "external",
+      "minimumReleaseAge": null,
       "matchCategories": [
         "docker",
         "ci"
@@ -197,10 +198,10 @@
         "pep621"
       ]
     },
-    {
-      "matchRegistryUrls": ["https://ghcr.io/**"],
-      "minimumReleaseAge": null
-    }
+    // {
+    //   "matchRegistryUrls": ["https://ghcr.io/**"],
+    //   "minimumReleaseAge": null
+    // }
     // {
     //   "matchUpdateTypes": ["pinDigest", "digest", "pin"],
     //   "minimumReleaseAge": null,
