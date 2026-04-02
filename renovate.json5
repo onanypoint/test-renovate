@@ -17,6 +17,7 @@
       "on monday"
     ]
   },
+  "minimumReleaseAgeBehaviour":"timestamp-optional",
   "minimumReleaseAge": "7 days",
   "prConcurrentLimit": 10,
   "rebaseWhen": "auto",
@@ -31,7 +32,7 @@
       "priority::high",
       "security"
     ],
-    "minimumReleaseAge": "0 days",
+    "minimumReleaseAge": null,
     "schedule": [
       "at any time"
     ]
@@ -192,6 +193,6 @@
       "matchManagers": [
         "pep621"
       ]
-    },
+    }
   ]
 }
