@@ -1,51 +1,195 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "branchPrefix": "chore-renovate-",
   "dependencyDashboard": true,
-  "automerge": false,
+  "description": "Shared base Renovate configuration preset for managing dependencies across projects",
   "extends": [
     "config:best-practices",
     "group:allDigest",
+    ":semanticCommitTypeAll(chore)"
   ],
-  "packageRules": [
-    {
-      "description": "pep621: group python dependency updates",
-      "groupName": "python dependencies",
-      "groupSlug": "uv",
-      "matchDepNames": [
-        "!python"
-      ],
-      "matchManagers": [
-        "pep621"
-      ],
-      "matchUpdateTypes": [
-        "patch",
-        "pin",
-        "digest"
-      ]
-    },
-     {
-      "automerge": true,
-      "automergeType": "branch",
-      "description": "Automerge Python patch/pin/digest updates",
-      "matchManagers": [
-        "pep621"
-      ],
-      "matchUpdateTypes": [
-        "patch",
-        "pin",
-        "digest"
-      ]
-    },
-    {
-      "allowedVersions": "<16",
-      "description": "Postgres: block version",
-      "matchDepNames": [
-        "postgres"
-      ]
-    },
-    {
-      "matchDepNames": ["postgres"],
-      "enabled": false
-    }
-  ]
+  "labels": [
+    "type::renovate"
+  ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": [
+      "on monday"
+    ]
+  },
+  "minimumReleaseAge": "7 days",
+  "prConcurrentLimit": 10,
+  "rebaseWhen": "auto",
+  "schedule": [
+    "after 4am and before 7am every weekday"
+  ],
+  "vulnerabilityAlerts": {
+    "automerge": false,
+    "enabled": true,
+    "labels": [
+      "type::renovate",
+      "priority::high",
+      "security"
+    ],
+    "minimumReleaseAge": "0 days",
+    "schedule": [
+      "at any time"
+    ]
+  },
+  {
+    "description": "External: group pin + patch updates",
+    "groupName": "external dependencies",
+    "groupSlug": "external",
+    "matchCategories": [
+      "docker",
+      "ci"
+    ],
+    "matchUpdateTypes": [
+      "pin",
+      "digest",
+      "patch"
+    ],
+    "schedule": [
+      "on the first day of the month"
+    ]
+  },
+  {
+    "allowedVersions": "<8",
+    "description": "Elasticsearch: block version",
+    "matchDepNames": [
+      "elasticsearch"
+    ]
+  },
+  {
+    "allowedVersions": "<16",
+    "description": "Postgres: block version",
+    "matchDepNames": [
+      "postgres"
+    ]
+  },
+  {
+    "allowedVersions": "<3.11",
+    "matchDepNames": [
+      "rabbitmq-server"
+    ]
+  },
+  {
+    "allowedVersions": "<9",
+    "description": "Redis: block version",
+    "matchDepNames": [
+      "redis"
+    ]
+  },
+  {
+    "description": "JS package manager: update pnpm/yarn/npm independently",
+    "groupName": "js package manager",
+    "groupSlug": "js-package-manager",
+    "matchDepTypes": [
+      "packageManager"
+    ],
+    "matchManagers": [
+      "npm"
+    ],
+    "rangeStrategy": "replace"
+  },
+  {
+    "description": "Node runtime: keep version updates separate",
+    "groupName": "node",
+    "groupSlug": "js-node",
+    "matchCategories": [
+      "js"
+    ],
+    "matchPackageNames": [
+      "node",
+      "@types/node"
+    ],
+    "rangeStrategy": "replace"
+  },
+  {
+    "description": "JS: group minor updates",
+    "groupName": "js dependencies (minor)",
+    "groupSlug": "js-minor",
+    "matchCategories": [
+      "js"
+    ],
+    "matchUpdateTypes": [
+      "minor"
+    ]
+  },
+  {
+    "description": "JS: group patch/pin/digest updates",
+    "groupName": "js dependencies (patch/pin/digest)",
+    "groupSlug": "js-patch-pin-digest",
+    "matchCategories": [
+      "js"
+    ],
+    "matchUpdateTypes": [
+      "patch",
+      "pin",
+      "digest"
+    ],
+    "schedule": [
+      "on the first day of the week"
+    ]
+  },
+  {
+    "description": "Disable python updates",
+    "enabled": false,
+    "matchDepNames": [
+      "python"
+    ]
+  },
+  {
+    "description": "pep621: pin dependency versions in pyproject.toml",
+    "matchDepNames": [
+      "!python"
+    ],
+    "matchManagers": [
+      "pep621"
+    ],
+    "rangeStrategy": "pin"
+  },
+  {
+    "description": "pep621: group python dependency minor updates",
+    "groupName": "python dependencies (minor)",
+    "groupSlug": "uv-minor",
+    "matchDepNames": [
+      "!python"
+    ],
+    "matchManagers": [
+      "pep621"
+    ],
+    "matchUpdateTypes": [
+      "minor"
+    ]
+  },
+  {
+    "description": "pep621: group python dependency patch/pin/digest updates",
+    "groupName": "python dependencies (patch/pin/digest)",
+    "groupSlug": "uv-patch-pin-digest",
+    "matchDepNames": [
+      "!python"
+    ],
+    "matchManagers": [
+      "pep621"
+    ],
+    "matchUpdateTypes": [
+      "patch",
+      "pin",
+      "digest"
+    ]
+  },
+  {
+    "allowedVersions": "<6",
+    "description": "Group Django updates",
+    "groupName": "django",
+    "groupSlug": "uv-django",
+    "matchDepNames": [
+      "django",
+      "Django"
+    ],
+    "matchManagers": [
+      "pep621"
+    ]
+  }
 }
