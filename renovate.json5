@@ -193,6 +193,10 @@
       "matchManagers": [
         "pep621"
       ]
+    },
+    {
+      "matchRegistryUrls": ["https://ghcr.io"],
+      "minimumReleaseAge": null
     }
   ]
 }
