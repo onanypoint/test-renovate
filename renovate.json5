@@ -196,8 +196,8 @@
       ]
     },
     {
-      "matchUpdateTypes": ["digest", "pin"],
-      "minimumReleaseAgeBehaviour": "timestamp-optional",
+      "matchUpdateTypes": ["pinDigest", "digest", "pin"],
+      // "minimumReleaseAgeBehaviour": "timestamp-optional",
       "minimumReleaseAge": null,
     },
     {
