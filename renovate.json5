@@ -12,11 +12,9 @@
     "type::renovate"
   ],
   "lockFileMaintenance": {
-    "enabled": true,
+    "enabled": true
   },
   "minimumReleaseAge": "7 days",
-  "prConcurrentLimit": 10,
-  "rebaseWhen": "auto",
   "schedule": [
     "after 4am and before 7am every weekday"
   ],
@@ -26,6 +24,7 @@
     "labels": [
       "type::renovate",
       "priority::high",
+      "security"
     ],
     "minimumReleaseAge": null,
     "schedule": [
@@ -43,12 +42,39 @@
       ],
       "matchUpdateTypes": [
         "pin",
-        "pinDigest",
         "digest",
+        "pinDigest",
         "patch"
       ],
       "schedule": [
         "on the first day of the month"
+      ]
+    },
+    {
+      "allowedVersions": "<8",
+      "description": "Elasticsearch: block version",
+      "matchDepNames": [
+        "elasticsearch"
+      ]
+    },
+    {
+      "allowedVersions": "<16",
+      "description": "Postgres: block version",
+      "matchDepNames": [
+        "postgres"
+      ]
+    },
+    {
+      "allowedVersions": "<3.11",
+      "matchDepNames": [
+        "rabbitmq-server"
+      ]
+    },
+    {
+      "allowedVersions": "<9",
+      "description": "Redis: block version",
+      "matchDepNames": [
+        "redis"
       ]
     },
     {
@@ -146,8 +172,8 @@
       ],
       "matchUpdateTypes": [
         "patch",
-        "digest",
-        "pin"
+        "pin",
+        "digest"
       ]
     },
     {
@@ -162,30 +188,6 @@
       "matchManagers": [
         "pep621"
       ]
-    },
-    {
-      "description": "Do not require Minimum Release Age for update types that are controlled by the package manager",
-      "matchUpdateTypes": ["lockFileMaintenance"],
-      "prBodyNotes": [
-        "⚠️ Renovate's lock file maintenance functionality does not support validating Minimum Release Age, as the package manager performs the required changes to update package(s). Confirm whether your package manager perform its own validation for the Minimum Release Age of packages."
-      ],
-      "minimumReleaseAge": null
-    },
-    {
-      "description": "Do not require Minimum Release Age for package replacements",
-      "matchUpdateTypes": ["replacement"],
-      "prBodyNotes": [
-        "⚠️ Renovate's replacement functionality [does not currently](https://github.com/renovatebot/renovate/issues/39400) wire in the release age for a package, so the Minimum Release Age checks can apply. You will need to manually validate the Minimum Release Age for these package(s)."
-      ],
-      "minimumReleaseAge": null
-    },
-    {
-      "description": "Do not require Minimum Release Age for package pinning",
-      "matchUpdateTypes": ["pin",  "pinDigest",],
-      "prBodyNotes": [
-        "⚠️ Renovate's pin functionality [does not currently](https://github.com/renovatebot/renovate/issues/40288) wire in the release age for a package, so the Minimum Release Age checks can apply. You will need to manually validate the Minimum Release Age for these package(s)."
-      ],
-      "minimumReleaseAge": null
     }
   ]
 }
