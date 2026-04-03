@@ -167,7 +167,7 @@
       ]
     },
     {
-      "matchUpdateTypes": ["pin", "pinDigest", "lockFileMaintenance"],
+      "matchUpdateTypes": ["pin", "pinDigest"],
       "minimumReleaseAge": null,
     }
   ]
