@@ -1,0 +1,11 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "OK"
