@@ -11,3 +11,6 @@ dependencies = [
     "bleach==6.2.0",
     "pandas==2.3.3",
 ]
+
+[tool.uv]
+exclude-newer = "7 days"
