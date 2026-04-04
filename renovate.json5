@@ -12,12 +12,15 @@
     "type::renovate"
   ],
   "lockFileMaintenance": {
-    "enabled": true
+    "enabled": true,
+    "schedule": [
+      "at any time"
+    ],
   },
   "minimumReleaseAge": "7 days",
-  "schedule": [
-    "after 4am and before 7am every weekday"
-  ],
+  // "schedule": [
+  //   "after 4am and before 7am every weekday"
+  // ],
   "vulnerabilityAlerts": {
     "automerge": false,
     "enabled": true,
@@ -27,9 +30,9 @@
       "security"
     ],
     "minimumReleaseAge": null,
-    "schedule": [
-      "at any time"
-    ]
+    // "schedule": [
+    //   "at any time"
+    // ]
   },
   "packageRules": [
     {
@@ -46,9 +49,9 @@
         "pinDigest",
         "patch"
       ],
-      "schedule": [
-        "on the first day of the month"
-      ]
+      // "schedule": [
+      //   "on the first day of the month"
+      // ]
     },
     {
       "allowedVersions": "<8",
@@ -125,9 +128,9 @@
         "pin",
         "digest"
       ],
-      "schedule": [
-        "on the first day of the week"
-      ]
+      // "schedule": [
+      //   "on the first day of the week"
+      // ]
     },
     {
       "description": "Disable python updates",
