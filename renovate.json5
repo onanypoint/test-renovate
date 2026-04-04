@@ -255,7 +255,7 @@
       "matchUpdateTypes": [
         "patch",
         "pin",
-        "digest"
+        "digest",
         "pinDigest",
       ]
     }
