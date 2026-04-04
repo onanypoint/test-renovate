@@ -3,7 +3,7 @@ revision = 3
 requires-python = "==3.12.*"
 
 [options]
-exclude-newer = "2026-03-28T10:15:17.386895Z"
+exclude-newer = "2026-03-28T10:16:27.197792337Z"
 exclude-newer-span = "P7D"
 
 [[package]]
@@ -207,7 +207,7 @@ dependencies = [
 requires-dist = [
     { name = "bleach", specifier = "==6.2.0" },
     { name = "django", specifier = "==5.2.9" },
-    { name = "django-cors-headers", specifier = ">=4.9.0" },
+    { name = "django-cors-headers", specifier = "==4.9.0" },
     { name = "pandas", specifier = "==2.3.3" },
     { name = "requests", specifier = "==2.32.0" },
 ]
