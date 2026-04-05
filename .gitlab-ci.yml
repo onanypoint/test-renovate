@@ -1,7 +1,7 @@
-image: ghcr.io/astral-sh/uv:python3.12-trixie
+image: ghcr.io/astral-sh/uv:python3.12-trixie@sha256:f573e1c677b765dd7e141c7b617432a60d0656a4652fb1386c219369ea40e692
 
 services:
-  - name: postgres:15
+  - name: postgres:15@sha256:c635fa3e3b7421a659d34abdfd6d492f679cbe8149e261a501237b55c5a94212
     alias: db_ci
     
 cache:
