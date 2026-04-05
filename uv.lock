@@ -2,6 +2,10 @@ version = 1
 revision = 3
 requires-python = "==3.12.*"
 
+[options]
+exclude-newer = "2026-03-29T16:34:01.241263Z"
+exclude-newer-span = "P7D"
+
 [[package]]
 name = "asgiref"
 version = "3.11.1"

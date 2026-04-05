@@ -11,3 +11,6 @@ dependencies = [
     "pandas==2.3.3",
     "pysaml2==7.5.4",
 ]
+
+[tool.uv]
+exclude-newer = "7 days"
