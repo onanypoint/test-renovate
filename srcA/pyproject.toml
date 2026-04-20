@@ -1,14 +1,10 @@
 [project]
-name = "test-renovate-B"
+name = "test-renovate-A"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
-]
-
-[tool.uv.workspace]
-members = [
-  "srcA",
-  "srcB",
+    "django==6.0.1",
+    "more-itertools==10.8.0",
 ]
