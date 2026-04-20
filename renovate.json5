@@ -3,7 +3,6 @@
   "branchPrefix": "chore-renovate-",
   "dependencyDashboard": true,
   "description": "Shared base Renovate configuration preset for managing dependencies across projects",
-  "prHourlyLimit": 20,
   "extends": [
     "config:best-practices",
     "group:allDigest",
@@ -14,16 +13,10 @@
   ],
   "lockFileMaintenance": {
     "enabled": true,
-    // "automerge": false,
-    // "automergeType": "branch",
     "schedule": [
       "at any time"
     ],
   },
-  "minimumReleaseAge": "7 days",
-  // "schedule": [
-  //   "after 4am and before 7am every weekday"
-  // ],
   "vulnerabilityAlerts": {
     "automerge": false,
     "enabled": true,
@@ -33,9 +26,6 @@
       "security"
     ],
     "minimumReleaseAge": null,
-    // "schedule": [
-    //   "at any time"
-    // ]
   },
   "packageRules": [
     {
@@ -52,9 +42,6 @@
         "pinDigest",
         "patch"
       ],
-      // "schedule": [
-      //   "on the first day of the month"
-      // ]
     },
     {
       "allowedVersions": "<8",
@@ -131,9 +118,6 @@
         "pin",
         "digest"
       ],
-      // "schedule": [
-      //   "on the first day of the week"
-      // ]
     },
     {
       "description": "Disable python updates",

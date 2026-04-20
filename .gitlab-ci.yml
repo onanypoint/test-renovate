@@ -1,18 +1,13 @@
 image: ghcr.io/astral-sh/uv:python3.12-trixie
 
-services:
-  - name: postgres:15
-    alias: db_ci
-    
 cache:
   key: ${CI_PROJECT_NAME}
   paths:
     - $UV_CACHE_DIR
-
-variables:
-  POSTGRES_DB: "ci"
-  POSTGRES_USER: "ci"
-  POSTGRES_PASSWORD: "ci"
-
+    
 before_script:
   - uv sync
+
+ci:
+  script:
+    - echo "OK"
