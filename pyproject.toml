@@ -5,20 +5,20 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
-  #"arcanite-django-utils==1.1.0",
+  "arcanite-django-utils==1.1.0",
   "more-itertools==10.6.0",
 ]
 
 [tool.uv]
 exclude-newer = "15 days"
-#exclude-newer-package = { arcanite-django-utils = false }
+exclude-newer-package = { arcanite-django-utils = false }
 package = false
 
-#[[tool.uv.index]]
-#authenticate = "always"
-#explicit = true
-#name = "arcanite"
-#url = "https://pip.arcanite.ch/dependencies/prod/+simple"
+[[tool.uv.index]]
+authenticate = "always"
+explicit = true
+name = "arcanite"
+url = "https://pip.arcanite.ch/dependencies/prod/+simple"
 
-#[tool.uv.sources]
-#arcanite-django-utils = {index = "arcanite"}
+[tool.uv.sources]
+arcanite-django-utils = {index = "arcanite"}

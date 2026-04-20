@@ -15,7 +15,17 @@
     "enabled": true
   },
   "minimumReleaseAge": "15 days",
-  "packageRules": [],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "pep621"
+      ],
+      "matchRegistryUrls": [
+        "https://pip.arcanite.ch/**"
+      ],
+      "minimumReleaseAge": null
+    }
+  ],
   "schedule": [
     "after 4am and before 7am every weekday"
   ],
