@@ -14,10 +14,8 @@
   "lockFileMaintenance": {
     "enabled": true
   },
-  "minimumReleaseAge": null,
-  "packageRules": [
-   
-  ],
+  "minimumReleaseAge": "15 days",
+  "packageRules": [],
   "schedule": [
     "after 4am and before 7am every weekday"
   ],
