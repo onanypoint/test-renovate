@@ -25,5 +25,61 @@
         "python"
       ]
     },
-  ]
+    {
+      "description": "pep621: group python dependency minor updates",
+      "groupName": "python dependencies (minor)",
+      "groupSlug": "uv-minor",
+      "matchDepNames": [
+        "!python"
+      ],
+      "matchManagers": [
+        "pep621"
+      ],
+      "matchUpdateTypes": [
+        "minor"
+      ]
+    },
+    {
+      "description": "pep621: group python dependency patch/pin/digest updates",
+      "groupName": "python dependencies (patch/pin/digest)",
+      "groupSlug": "uv-patch-pin-digest",
+      "matchDepNames": [
+        "!python"
+      ],
+      "matchManagers": [
+        "pep621"
+      ],
+      "matchUpdateTypes": [
+        "patch",
+        "pin",
+        "digest"
+      ]
+    },
+    {
+      "allowedVersions": "<6",
+      "description": "Group Django updates",
+      "groupName": "django",
+      "groupSlug": "uv-django",
+      "matchDepNames": [
+        "django",
+        "Django"
+      ],
+      "matchManagers": [
+        "pep621"
+      ]
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "automerge": false,
+    "enabled": true,
+    "labels": [
+      "type::renovate",
+      "priority::high",
+      "security"
+    ],
+    "minimumReleaseAge": null,
+    "schedule": [
+      "at any time"
+    ]
+  }
 }
