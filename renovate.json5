@@ -2,7 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "branchPrefix": "chore-renovate-",
   "dependencyDashboard": true,
-  "constraintsFiltering": "strict",
   "rangeStrategy": "pin",
   "description": "Shared base Renovate configuration preset for managing dependencies across projects",
   "extends": [
@@ -20,52 +19,12 @@
     ],
   },
   "packageRules": [
-    // {
-    //   "description": "Disable python updates",
-    //   "enabled": false,
-    //   "matchDepNames": [
-    //     "python"
-    //   ]
-    // },
-    // {
-    //   "description": "pep621: pin dependency versions in pyproject.toml",
-    //   "matchDepNames": [
-    //     "!python"
-    //   ],
-    //   "matchManagers": [
-    //     "pep621"
-    //   ],
-    //   "rangeStrategy": "pin"
-    // },
-    // {
-    //   "description": "pep621: group python dependency minor updates",
-    //   "groupName": "python dependencies (minor)",
-    //   "groupSlug": "uv-minor",
-    //   "matchDepNames": [
-    //     "!python"
-    //   ],
-    //   "matchManagers": [
-    //     "pep621"
-    //   ],
-    //   "matchUpdateTypes": [
-    //     "minor"
-    //   ]
-    // },
-    // {
-    //   "description": "pep621: group python dependency patch/pin/digest updates",
-    //   "groupName": "python dependencies (patch/pin/digest)",
-    //   "groupSlug": "uv-patch-pin-digest",
-    //   "matchDepNames": [
-    //     "!python"
-    //   ],
-    //   "matchManagers": [
-    //     "pep621"
-    //   ],
-    //   "matchUpdateTypes": [
-    //     "patch",
-    //     "pin",
-    //     "digest"
-    //   ]
-    // },
+    {
+      "description": "Disable python updates",
+      "enabled": false,
+      "matchDepNames": [
+        "python"
+      ]
+    },
   ]
 }
