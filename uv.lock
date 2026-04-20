@@ -2,6 +2,13 @@ version = 1
 revision = 3
 requires-python = "==3.12.*"
 
+[manifest]
+members = [
+    "test-renovate",
+    "test-renovate-a",
+    "test-renovate-b",
+]
+
 [[package]]
 name = "asgiref"
 version = "3.11.1"
@@ -47,6 +54,32 @@ wheels = [
 name = "test-renovate"
 version = "0.1.0"
 source = { virtual = "." }
+dependencies = [
+    { name = "more-itertools" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "more-itertools", specifier = "==10.8.0" }]
+
+[[package]]
+name = "test-renovate-a"
+version = "0.1.0"
+source = { virtual = "srcA" }
+dependencies = [
+    { name = "django" },
+    { name = "more-itertools" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "django", specifier = "==6.0.1" },
+    { name = "more-itertools", specifier = "==10.8.0" },
+]
+
+[[package]]
+name = "test-renovate-b"
+version = "0.1.0"
+source = { virtual = "srcB" }
 dependencies = [
     { name = "django" },
     { name = "more-itertools" },
