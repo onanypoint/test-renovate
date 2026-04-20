@@ -2,7 +2,7 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "branchPrefix": "chore-renovate-",
   "dependencyDashboard": true,
-  "rangeStrategy": "pin",
+  // "rangeStrategy": "pin",
   "description": "Shared base Renovate configuration preset for managing dependencies across projects",
   "extends": [
     "config:best-practices",
