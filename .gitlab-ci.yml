@@ -1,4 +1,4 @@
-image: ghcr.io/astral-sh/uv:python3.12-trixie
+image: ghcr.io/astral-sh/uv:python3.12-trixie@sha256:3b66071aa339eec6e5149dbc7f2c07144d71f4c25c6aab3959e87747e5c45e35
 
 cache:
   key: ${CI_PROJECT_NAME}
