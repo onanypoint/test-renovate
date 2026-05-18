@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
   #"arcanite-django-utils==1.0.0",
-  "more-itertools==10.6.0",
+  "more-itertools==11.0.2",
 ]
 
 [tool.uv]
