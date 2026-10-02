@@ -3,7 +3,7 @@ name = "test-renovate"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.12,<3.13"
+requires-python = ">=3.14,<3.15"
 dependencies = [
   #"arcanite-django-utils==1.0.0",
   "more-itertools==10.6.0",
